@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">GeoQuiz4</string>
+    <string name="cauhoi">Thái Bình Dương lớn hơn Đại Tây Dương?</string>
+    <string name="dung">TRUE</string>
+    <string name="sai">FALSE</string>
+    <string name="traloidung">Bạn trả lời đúng</string>
+    <string name="traloisai">Bạn trả lời sai</string>
+    <string name="cauhoiA">Châu Á Thái Bình Dương lớn hơn Đại Tây Dương</string>
+    <string name="cauhoiB">Diện Tích Việt Nam lớn hơn Trung Quốc</string>
+    <string name="cauhoiC">Huế giáp ranh với Đà Nẵng</string>
+
+    <string-array name="danhsachcauhoi">
+        <item>@string/cauhoiA</item>
+        <item>@string/cauhoiB</item>
+        <item>@string/cauhoiC</item>
+    </string-array>
 </resources>
