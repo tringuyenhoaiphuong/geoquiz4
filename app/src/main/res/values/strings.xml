@@ -8,6 +8,8 @@
     <string name="cauhoiA">Châu Á Thái Bình Dương lớn hơn Đại Tây Dương</string>
     <string name="cauhoiB">Diện Tích Việt Nam lớn hơn Trung Quốc</string>
     <string name="cauhoiC">Huế giáp ranh với Đà Nẵng</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
 
     <string-array name="danhsachcauhoi">
         <item>@string/cauhoiA</item>

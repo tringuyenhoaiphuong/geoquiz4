@@ -26,17 +26,46 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.btn_traloisai)
     Button mBtnTraLoiSai;
 
+    @BindView(R.id.btn_previous)
+    Button mBtnPrevious;
+
+    @BindView(R.id.btn_next)
+    Button mBtnNext;
+
     @BindView(R.id.tv_cauhoi)
     TextView mTvCauHoi;
 
     @OnClick(R.id.btn_traloidung)
     void OnBtnTraLoiDungClick(View v) {
-        Toast.makeText(MainActivity.this, R.string.traloidung, Toast.LENGTH_SHORT).show();
+        answer(true);
     }
 
     @OnClick(R.id.btn_traloisai)
     void OnBtnTraLoiSaiClick(View v) {
-        Toast.makeText(MainActivity.this, R.string.traloisai, Toast.LENGTH_SHORT).show();
+        answer(false);
+    }
+
+    private void answer(boolean b) {
+        Question currentQuestion = mQuestionList.get(mCurrentQuestionIndex);
+        if(currentQuestion.IsTrue() == b) {
+            Toast.makeText(MainActivity.this, R.string.traloidung, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MainActivity.this, R.string.traloisai, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @OnClick(R.id.btn_next)
+    void OnBtnNextClick(View v) {
+        if(mCurrentQuestionIndex == mQuestionList.size() - 1) return;
+        mCurrentQuestionIndex++;
+        showQuestion();
+    }
+
+    @OnClick(R.id.btn_previous)
+    void OnBtnPreviousClick(View v) {
+        if(mCurrentQuestionIndex == 0) return;
+        mCurrentQuestionIndex--;
+        showQuestion();
     }
 
 
@@ -53,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     private void showQuestion() {
         mTvCauHoi.setText(mQuestionList.get(mCurrentQuestionIndex).getCauHoi());
     }
-
+//   https://github.com/lemycanh/geoquiz4.git
     private void loadQuestion() {
         mQuestionList = new ArrayList<Question>();
         String cauhois[] = getResources().getStringArray(R.array.danhsachcauhoi);
