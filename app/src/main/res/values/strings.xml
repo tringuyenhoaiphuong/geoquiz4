@@ -10,6 +10,11 @@
     <string name="cauhoiC">Huế giáp ranh với Đà Nẵng</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
+    <string name="question_content">Câu hỏi</string>
+    <string name="show_answer">SHOW ANSWER</string>
+    <string name="cheat">Cheat!</string>
+    <string name="cheat_warning">Nếu sử dụng tính năng này, bạn sẽ không được tính điểm</string>
+    <string name="answer_is">Đáp án là:</string>
 
     <string-array name="danhsachcauhoi">
         <item>@string/cauhoiA</item>
