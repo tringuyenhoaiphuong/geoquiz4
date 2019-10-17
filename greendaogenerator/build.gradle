@@ -1,0 +1,12 @@
+// apply plugin: 'java-library'
+apply plugin: 'application'
+
+mainClassName = "com.lemycanh.geoquiz.GreenDaoGenerator"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'org.greenrobot:greendao-generator:3.2.0' // add library
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

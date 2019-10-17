@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int CODE_SHOW_ANSWER = 1;
     final String TAG = "GeoQuiz";
 
-    ArrayList<Question> mQuestionList;
+    List<Question> mQuestionList;
     int mCurrentQuestionIndex;
 
     @BindView(R.id.btn_traloidung)
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void answer(boolean b) {
         Question currentQuestion = mQuestionList.get(mCurrentQuestionIndex);
-        if(currentQuestion.IsTrue() == b) {
+        if(currentQuestion.getAnswer() == b) {
             Toast.makeText(MainActivity.this, R.string.traloidung, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(MainActivity.this, R.string.traloisai, Toast.LENGTH_SHORT).show();
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.btn_cheat)
     void OnBtnCheatClick(View v) {
         Question currentQuestion = mQuestionList.get(mCurrentQuestionIndex);
-        Intent startCheatAcitivityIntent = CheatActivity.createIntent(this, currentQuestion.getCauHoi());
+        Intent startCheatAcitivityIntent = CheatActivity.createIntent(this, currentQuestion.getContent());
         startActivityForResult(startCheatAcitivityIntent, CODE_SHOW_ANSWER);
     }
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == CODE_SHOW_ANSWER) {
             if(resultCode == RESULT_OK) {
                 Question currentQuestion = mQuestionList.get(mCurrentQuestionIndex);
-                Toast.makeText(MainActivity.this, getString(R.string.answer_is) + currentQuestion.IsTrue(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, getString(R.string.answer_is) + currentQuestion.getAnswer(), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -157,16 +157,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showQuestion() {
-        mTvCauHoi.setText(mQuestionList.get(mCurrentQuestionIndex).getCauHoi());
+        mTvCauHoi.setText(mQuestionList.get(mCurrentQuestionIndex).getContent());
     }
 //   https://github.com/lemycanh/geoquiz4.git
     private void loadQuestion() {
-        mQuestionList = new ArrayList<Question>();
-        String cauhois[] = getResources().getStringArray(R.array.danhsachcauhoi);
-        TypedArray tralois = getResources().obtainTypedArray(R.array.danhsachtraloi);
-        mQuestionList.add(new Question(cauhois[0], tralois.getBoolean(0, false)));
-        mQuestionList.add(new Question(cauhois[1], tralois.getBoolean(1, false)));
-        mQuestionList.add(new Question(cauhois[2], tralois.getBoolean(2, false)));
+        QuestionDao questionDao = GeoQuizApplication.Instance().getDaoSession().getQuestionDao();
+        mQuestionList = questionDao.loadAll();
         mCurrentQuestionIndex = 0;
     }
 }
